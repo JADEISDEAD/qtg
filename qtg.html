@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Text Generator</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .random-text {
+      position: absolute;
+      color: #00FF00; /* Green text */
+      font-size: 2rem;
+      white-space: nowrap;
+      pointer-events: none; /* So it doesn't interfere with other elements */
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    const phrases = [
+      "The toast fell in love with the fridge.",
+      "Cats are plotting.",
+      "Unicorns are hiding from the WiFi.",
+      "The moon is secretly made of cheese.",
+      "Is this real or just a simulation?",
+      "There’s a sock under your bed that knows your secrets.",
+      "A banana just texted you.",
+      "The coffee cup is watching you.",
+      "The chair is sentient.",
+      "Your WiFi is judging you."
+    ];
+
+
+    function getRandomText() {
+     
+      if (Math.random() > 0.5) {
+        return phrases[Math.floor(Math.random() * phrases.length)];
+      } else {
+        return generateRandomLetters();
+      }
+    }
+
+  
+    function generateRandomLetters() {
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let randomString = '';
+      const length = Math.floor(Math.random() * 10 + 5); 
+      for (let i = 0; i < length; i++) {
+        randomString += letters.charAt(Math.floor(Math.random() * letters.length));
+      }
+      return randomString;
+    }
+
+ 
+    function createRandomText() {
+      const randomText = document.createElement('div');
+      randomText.classList.add('random-text');
+      randomText.textContent = getRandomText();
+
+
+      randomText.style.left = Math.random() * window.innerWidth + 'px';
+      randomText.style.top = Math.random() * window.innerHeight + 'px';
+
+      document.body.appendChild(randomText);
+
+  
+      const flashDuration = Math.random() * 300 + 200; 
+        randomText.remove();
+      }, flashDuration);
+    }
+
+    function generateRandomText() {
+      setInterval(createRandomText, Math.random() * 200); 
+    }
+
+    generateRandomText();
+  </script>
+
+</body>
+</html>
