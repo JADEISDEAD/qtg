@@ -16,10 +16,10 @@
 
     .random-text {
       position: absolute;
-      color: #00FF00; /* Green text */
+      color: #00FF00;
       font-size: 2rem;
       white-space: nowrap;
-      pointer-events: none; /* So it doesn't interfere with other elements */
+      pointer-events: none;
     }
   </style>
 </head>
@@ -39,9 +39,7 @@
       "Your WiFi is judging you."
     ];
 
-
     function getRandomText() {
-     
       if (Math.random() > 0.5) {
         return phrases[Math.floor(Math.random() * phrases.length)];
       } else {
@@ -49,37 +47,34 @@
       }
     }
 
-  
     function generateRandomLetters() {
       const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       let randomString = '';
-      const length = Math.floor(Math.random() * 10 + 5); 
+      const length = Math.floor(Math.random() * 10 + 5);
       for (let i = 0; i < length; i++) {
         randomString += letters.charAt(Math.floor(Math.random() * letters.length));
       }
       return randomString;
     }
 
- 
     function createRandomText() {
       const randomText = document.createElement('div');
       randomText.classList.add('random-text');
       randomText.textContent = getRandomText();
-
 
       randomText.style.left = Math.random() * window.innerWidth + 'px';
       randomText.style.top = Math.random() * window.innerHeight + 'px';
 
       document.body.appendChild(randomText);
 
-  
-      const flashDuration = Math.random() * 300 + 200; 
+      const flashDuration = Math.random() * 300 + 200;
+      setTimeout(() => {
         randomText.remove();
       }, flashDuration);
     }
 
     function generateRandomText() {
-      setInterval(createRandomText, Math.random() * 200); 
+      setInterval(createRandomText, Math.random() * 200);
     }
 
     generateRandomText();
